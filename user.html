@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       /* body {
+        width: 100vw;
+            
+        } */
+       #details {
+        display: flex;
+        justify-content: space-evenly;
+       
+
+        }
+      
+    </style>
+</head>
+<body>
+      <form action="">
+        <h2>Admin Dashboard - Personal Finance Manager</h2>
+         <input type="text" id="description" placeholder="description">
+         <input type="number" id="amount" placeholder="Amount">
+         <select name="option" id="select">
+            <option value="income">income</option>
+            <option value="expence">expence</option>
+
+         </select>
+
+         <input type="submit" id="submit" value="ADD TRANSACTION">
+
+
+      </form>
+
+       <h1 id="trasaction">TRANSACTION</h1>
+       <div id="details">
+        <h5 id="description">Description</h5>
+        <h5 id="amount">Amount</h5>
+        <h5 id="type">Type</h5>
+        <h5 id="action">Action</h5>
+       </div>
+
+
+
+
+    <script>
+
+
+
+        var get_submit=document.getElementById("submit")
+
+        get_submit.addEventListener("click",(e)=>{
+            e.preventDefault()
+            var get_desc=document.getElementById("description").value;
+            var get_amou=document.getElementById("amount").value;
+            var get_select=document.getElementById("select").value
+
+            console.log(get_desc,get_amou,get_select)
+
+             var details=document.getElementById("details");
+
+             details.append(get_desc,get_amou,get_select,dele)
+             document.body.appendChild(details)
+
+
+
+
+          
+            // console.log(st1,st2,st3,st4)
+            var dele=document.createElement("button")
+            dele.innerText="Delete"
+
+
+    //   div.append(st1,st2,st3,st4)
+    //   document.body.appendChild(div)
+
+
+        })
+
+    </script>
+
+
+</body>
+</html>

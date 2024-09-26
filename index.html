@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     /* Styling for the body element */
+     body {
+      width: 800px;
+      height: 200px;
+      box-shadow: 2px 4px 4px;
+      margin-left: 300px;
+      padding: 20px;
+      text-align: center;
+     }
+
+     /* Styling for input fields and labels */
+     input, label {
+      margin-top: 80px;
+      padding: 10px;
+      font-size: medium;
+     }
+
+     /* Styling for the submit button */
+     #submit {
+      width: 80px;
+      padding: 5px;
+      font-size: medium;
+      color: white;
+      background-color: rgb(15, 30, 237);
+      border: 2px solid white;
+      border-radius: 5px;
+     }
+
+     /* Styling for the error message paragraph */
+     p {
+      margin-left: -400px;
+      margin-top: 30px;
+     }
+    </style>
+</head>
+<body>
+  <!-- Form for user login -->
+  <form action="">
+    <label for="username">Name:</label>
+    <input type="text" id="username" placeholder="username">
+    <label for="password">Password:</label>
+    <input type="password" id="password" placeholder="password">
+    <input type="submit" value="login" id="submit">
+  </form>
+
+  <script>
+    // Get the submit button by its ID
+    var get_submit = document.getElementById("submit");
+
+    // Predefined credentials for login validation
+    const credentials = {
+      password: "admin123",
+      username: "admin"
+    }
+
+    // Array to store admin credentials
+    let admin = [];
+
+    // Event listener for the submit button click
+    get_submit.addEventListener("click", (e) => {
+        e.preventDefault(); // Prevent form from submitting and reloading the page
+
+        // Get user input values
+        var get_user = document.getElementById("username").value;
+        var get_pass = document.getElementById("password").value;
+
+        // Create an object with the input credentials
+        var obj = {
+          username: get_user,
+          password: get_pass
+        }
+
+        // Add the credentials object to the admin array
+        admin.push(obj);
+
+        // Check if the entered credentials match the predefined credentials
+        if (credentials.password && credentials.username == obj.username && obj.password) {
+            // Store the admin credentials in localStorage
+            localStorage.setItem("admin", JSON.stringify(admin));
+
+            // Redirect to the next page (user1.html)
+            window.location.assign("./user1.html");
+            window.history.forward();
+        } else {
+            // If credentials are invalid, display an error message
+            var p = document.createElement("p");
+            p.innerText = "Invalid Credentials!!";
+        }
+
+        // Append the error message paragraph to the body
+        document.body.appendChild(p);
+    });
+  </script>
+</body>
+</html>

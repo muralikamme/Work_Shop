@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+
+            width: 800px;
+            margin-left:350px;
+            box-shadow: 2px 4px 4px;
+            padding: 50px;
+            height: 100%;
+        }
+
+        #details {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+
+        .transaction {
+            display: flex;
+            justify-content: space-between; /* Space between items */
+            align-items: center;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+
+        #button,#submit{
+           color: white;
+           background-color: blue;
+           border-radius: 5px;
+           border: 2px solid white;
+           width: 80px;
+           padding: 5px;
+
+        }
+      
+    </style>
+</head>
+<body>
+    <h2>Admin Dashboard - Personal Finance Manager</h2>
+    <input type="button" value="Logout" id="button"><br><br>
+    <h3 id="bla">Balance:</h3>
+    <form action="">
+       
+        <input type="text" id="description" placeholder="Description" required>
+        <input type="number" id="amount" placeholder="Amount" required>
+        <select name="option" id="select">
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+        </select>
+        <input type="submit" id="submit" value="ADD TRANSACTION" style="width: fit-content;">
+    </form>
+
+    <h1 id="transaction">TRANSACTIONS</h1>
+    <div id="details">
+        <div class="transaction">
+            <h5 style="flex: 1;">Description</h5>
+            <h5 style="flex: 1;">Amount</h5>
+            <h5 style="flex: 1;">Type</h5>
+            <h5 style="flex: 1;">Action</h5>
+        </div>
+        <!-- Transactions will be appended here -->
+    </div>
+
+    <script>
+        const get_submit = document.getElementById("submit");
+
+        get_submit.addEventListener("click", (e) => {
+            e.preventDefault(); // Prevent the form from submitting
+
+            const get_desc = document.getElementById("description").value;
+            const get_amou = document.getElementById("amount").value;
+            const get_select = document.getElementById("select").value;
+
+
+            var get_bla=document.createElement("h3");
+            // get_bla.classList.add("bla")
+            // get_bla.innerHTML=get_amou
+
+
+
+           
+
+            // Create a new transaction row
+            const transactionRow = document.createElement("div");
+            transactionRow.classList.add("transaction");
+
+            // Add transaction details
+            transactionRow.innerHTML = `
+                <span style="flex: 1;">${get_desc}</span>
+                <span style="flex: 1;">${get_amou}</span>
+                <span style="flex: 1;">${get_select}</span>
+            `;
+
+            // Create delete button
+            const dele = document.createElement("button");
+            dele.innerText = "Delete";
+            dele.addEventListener("click", () => {
+                transactionRow.remove(); // Remove the transaction when button is clicked
+            });
+
+            // Append the delete button to the transaction row
+            transactionRow.appendChild(dele);
+
+            // Append the transaction row to the details container
+
+            document.getElementById("details").appendChild(transactionRow);
+
+
+
+
+            // Clear input fields
+            document.getElementById("description").value = '';
+            document.getElementById("amount").value = '';
+            document.getElementById("select").value = 'income'; // Reset to default
+            
+
+
+
+           
+
+        });
+
+
+        var btn=document.getElementById("button")
+        btn.addEventListener("click",(e)=>{
+            e.preventDefault()
+            window.history.back()
+       
+        })
+    </script>
+</body>
+</html>
